@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>登录</title>
+
+		
+</head>
+<body>
+<center>
+	<h1>购物商城登陆</h1>
+			<form action="" method="post">
+				{{form.hidden_tag()}}
+				{{form.mail.label}}{{form.mail}}<br>
+				{{form.password.label}}{{form.password}}<br>
+				{{form.submit}}
+			</form>
+	<div><a href="{{url_for('web.register')}}">马上注册</a></div>
+
+</center>
+
+</body>
+</html>

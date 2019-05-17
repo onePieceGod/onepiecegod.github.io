@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+   	<title>注册</title>
+</head>
+<body>
+<center>
+	<h1>商城注册</h1>
+		<div>
+			<form action="" method="post">
+				{{form.hidden_tag()}}
+				{{form.log_name.label}}{{form.log_name}}<br>
+				{{form.mail.label}}{{form.mail}}<br>
+				{{form.password.label}}{{form.password}}<br>
+				{{form.password_again.label}}{{form.password_again}}<br>
+
+				{{form.submit}}
+			</form>
+			<div><a href="{{url_for('web.login')}}">登录</a></div>
+		</div>
+</center>
+
+
+
+</body>
+</html>

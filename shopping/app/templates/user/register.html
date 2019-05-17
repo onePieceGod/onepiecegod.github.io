@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block head %}
+    {{ super() }}
+   <link rel="stylesheet" href="{{url_for('static', filename='css/register.css')}}">
+{% endblock %}
+{% block navbar %}
+{% endblock %}
+{% block content %}
+    <div class="row white-bg-margin">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="bg-container">
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4 text-center">
+                        <span class="big-title">鱼 书</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 flex-vertical personal-detail">
+                        <form action="{{ url_for('web.register') }}" method="post">
+                            {{form.hidden_tag()}}
+                            {{form.log_name(style="width:100%",class="none-input")}}
+                            {{form.mail(style="width:100%",class="none-input")}}
+                            {{form.password(class="none-input")}}
+                             {{form.password_again(class="none-input")}}
+                            {{form.submit(class="btn btn-big btn-block" )}}
+                        </form>
+                    </div>
+                </div>
+                <div style="margin-top:30px;" class="row">
+                    <div class="col-md-8 text-center col-md-offset-2">
+                        <span class="description-font">已有账号？</span><a
+                            href="{{ url_for('web.login') }}">登录</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+{% endblock %}

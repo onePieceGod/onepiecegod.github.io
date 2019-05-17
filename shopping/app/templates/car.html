@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>拼夕夕购物车</h1>
+</center>
+<a href="{{url_for('web.user')}}" style="float:right">{{name}}&nbsp;你好</a><br>
+<a href="" style="float:right">余额：&nbsp;&nbsp;&nbsp;{{mon}}</a>
+<div width="5%" height="10%">
+
+
+</div>
+{% for dic in s   %}
+<div height="40%">
+<table>
+	<tr>
+		<img src="{{dic.img}}">
+	</tr>
+
+
+
+
+
+
+</table>
+	商品简介：<a href="{{dic.url}}">{{dic.title}}</a><br>
+	价格:{{dic.price}}<br>
+	配件：{{dic.packInfo}}<br>
+	厂家：{{dic.brandName}}<br>
+	店家：{{dic.sellerScreenName}}<br>
+	{#<a href="{{url_for('web.buy',price=dic.price,title=dic.title,img=dic.img,pack=dic.packInfo,brand=dic.brandName,st=0,url=dic.url)}}">购买</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="{{url_for('web.mains')}}">返回主页</a>#}
+	<script text="text/javascript">
+	var data = {
+		"price": dic.price,
+		"title": dic.title,
+		"img":dic.img,
+		"pack":dic.packInfo,
+		"brand":dic.brandName,
+		"st":0,
+		"url":dic.url
+	};
+	$.ajax({
+		type: 'POST',
+		url: '/shop/main',
+		data: data,
+		dataType: 'json',
+		success: function(data) {
+		},
+		error: function(xhr, type) {
+		}
+	});
+	</script>
+
+</div>
+{% endfor   %}
+</body>
+</html>

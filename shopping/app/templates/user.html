@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<center>
+<h1>用户详情</h1>
+</center>
+<center>
+<table border="3">
+    <tr>
+        <td>用户名</td>
+        <td>邮箱</td>
+        <td>余额</td>
+    </tr>
+    <tr>
+        <td>{{user.log_name}}</td>
+        <td>{{user.mail}}</td>
+        <td>{{user.money}}</td>
+    </tr>
+</table>
+    <a href="{{url_for('web.chong',a=0)}}">充值</a><br>
+
+     <a href="{{url_for('web.card')}}">购物清单</a><br>
+    <a href="{{url_for('web.bought')}}">已买货物</a><br>
+    <a href="{{url_for('web.mains')}}">返回主页</a>
+
+</center>
+</body>
+</html>
