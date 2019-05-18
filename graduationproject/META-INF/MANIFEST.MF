@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Implementation-Title: graduationproject
+Implementation-Version: 1.0.0
+Built-By: 张广东
+Implementation-Vendor-Id: hebau.edu.cn
+Spring-Boot-Version: 2.1.3.RELEASE
+Main-Class: org.springframework.boot.loader.JarLauncher
+Start-Class: hebau.edu.cn.graduationproject.GraduationprojectApplicati
+ on
+Spring-Boot-Classes: BOOT-INF/classes/
+Spring-Boot-Lib: BOOT-INF/lib/
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_201
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/graduationproject
+

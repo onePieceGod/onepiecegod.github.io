@@ -1,0 +1,85 @@
+<!doctype html>
+<html  class="x-admin-sm" xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>后台登录-X-admin2.1</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="stylesheet" href="../../static/css/font.css" th:href="@{/css/font.css}">
+    <link rel="stylesheet" href="../../static/lib/layui/css/layui.css" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" href="../../static/css/xadmin.css" th:href="@{/css/xadmin.css}">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../../static/lib/layui/layui.js" th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
+    <script type="text/javascript" src="../../static/js/xadmin.js" th:src="@{/js/xadmin.js}"></script>
+    <script type="text/javascript" src="../../static/js/cookie.js" th:src="@{/js/cookie.js}"></script>
+
+</head>
+<body>
+<div class="layui-collapse" lay-filter="test">
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">论文格式说明</h2>
+        <div class="layui-colla-content">
+            <span>注意事项：
+（1）要严格使用本专业的制式文档，本部与现科文档制式是不同的，不能混用。我们是做的毕业设计，不是毕业论文，封皮要选对。
+（2）毕业设计题目、专业、班级、姓名、学号要完整，要写对。不要从别的同学那复制一份，容易漏改内容。
+（3）毕业设计论文有两个：打印版和查重版。这两份内容一样，格式不同。查重版是为了学校检查你文章的抄袭率的，这个过了你才有资格参加答辩，查重机会只有一次。打印版是毕设上交的纸质版毕业设计论文，在答辩那天应该带着。写论文应该先写打印版，再改为查重版。
+（4）毕设程序要求美观大方，符合题目，功能齐备，无明显缺陷。程序原则上应为自己所开发，要能讲出所有相关细节和实现方式。
+（5）答辩时，要带上全套文档打印版、电子版、ppt及程序。学校不提供展示用机器，请自备。建议自己带本，充满电。每人十分钟左右的演示时间，听答辩专家指挥。回答问题要准确，知道就知道，不知道就是不知道或没考虑清，不要与毕设环节无关的事情或顶撞答辩专家。衣着得体，禁止男生跨栏背心、大裤衩、拖鞋等违背教学要求的着装，如若出现上述情形，答辩专家有权取消你答辩。
+（6）答辩后，主动按答辩专家意见修改程序及文档，并及时找指导教师并根据要求修改和上交电子稿、打印稿、ppt及完整源程序和编译后程序等。如不按时交清文件，教师有权不给你的毕业相关材料签字。
+
+各文档注意：
+（1）封皮：此采用制式封皮。美观。
+（2）任务书：此时我们还没有做任何系统和设计，不能体现先上车后买票。时间1月15日。
+设计内容：对所做内容的背景及意义做介绍，并列出所做软件设计的需求简述。不能出现系统划分或者模块划分等字眼。
+设计要求：列出要实现的功能需求及非功能需求，注意一定要和你后面写的毕设呼应，可以功能多写一点，实现少一点或者正好；决不能功能写得大而全，实现一点点。不能出现系统划分或者模块划分等字眼。
+设计参数：此处可以宽泛去写，比如数据库：关系型数据库，SQLServer或者MySQL等，给自己留有多种选择余地。
+专家意见：此处可以自行填写一部分，核心围绕“该选题符合专业技术要求，设计内容详细，有一定的实用价值，符合人才培养的目标和要求，任务细节设计完善”等措辞。这个我们最后再定。
+（3）开题报告：通过2个月左右的资料搜集和任务分解，对系统有了认识，体现出设计思路。时间3月15日。
+设计内容分析：项目意义及系统需求和模块划分，及各模块的具体功能。
+参考案例：从文献中查询出的相关系统及简要介绍和优缺点。这个就是过去的文献综述。
+相关技术：你所采用的技术介绍。主要这个不能复制论文中的相关技术要不一样。
+参考文献：对参考案例和相关技术的来源做出说明。这里要求十个左右，中文文献、英文文献都要有，而且日期要近五年的，不要出现十几年前的文献。
+（4）指导教师评阅书：先自拟初稿。建议分两段：第一段以专家角度围绕对你搜集素材、态度、做系统的内容做出介绍。第二段给出突出“已经达到本科毕业设计的要求”。具体内容我们回头结合毕设其他环节给出具体修改意见。
+（5）答辩记录表：先填写自己知道的，不清楚的如专家、分数、结论等不填。单独另附纸自拟结论，突出：选题意义（具有意义or意义重大）；资料搜集工作量（齐全or工作量大or一般）；技术选型（基本合理or合理）；软件实现功能（基本实现or全部实现）；界面要求（一般or美观or易用or简陋）；答辩回答问题是否合理（正确or基本合理）；不足之处（少写或不写）；是否达到本科毕业设计的要求（达到or基本达到）。答辩分数高，就写好点，分数低就写差些。
+（6）设计说明书：核心是按照软件工程的开发思想编写整个文档。
+中文摘要：4百字左右，含有项目背景及意义，技术选型、实现功能。3至4个关键字。
+英文摘要：中文摘要的汉化，不能完全依赖翻译软件，需要自己手工检验语法及语句。
+第一章：（1）项目背景及意义（2）国内外现状分析（3）主要研究内容（4）论文组织结构
+第二章：相关技术介绍（也可作为系统实现的第一节），按大到小，粗到细的方式写。
+第三章：【可行性与】需求分析（也可拆为两章）
+第四章：系统设计（也可拆为概要设计和详细设计两章，数据库是三线表表示）
+第五章：系统实现（不要大段代码，不要配置，可写经验总结、注意事项、函数声明等，截图要美观居中，不能两图一页）
+第六章：系统测试。（不推荐，如果你只想占字数，就免了；除非你有理论和测试用例，注意是测试用例，不是简单测一下对话框显示什么的）
+第七章 总结与展望。（1）总结:将你做的工作分条目列出，突出亮点（2）展望：系统还存在什么不足，写一段就行，不用太多。总结与展望长度比2:1或3:1
+参考文献：这里要求二十个左右，中文文献、英文文献都要有，而且日期要近五年的，不要出现十几年前的文献。格式要正确。
+致谢：感谢父母家人、老师、同学及帮助过你的人。
+（7）ppt：美观大方，文字少，分层次，摆重点，粘图片。不要出现内容错误，或知识点错误。最后要加一张感谢批评指正的页。Ppt十页多点就可以。</span>
+        </div>
+    </div>
+    <div class="layui-collapse" lay-accordion="">
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">通知查看</h2>
+            <div class="layui-colla-content layui-show">
+
+                <div th:each="advise : ${advises}">
+                            <div class="layui-collapse" lay-accordion="">
+                                <div class="layui-colla-item">
+                                    <h2 class="layui-colla-title" >[[${advise.getTitle()}]] <span th:align="right">[[${advise.getTime()}]]</span></h2>
+                                    <div class="layui-colla-content layui-show">
+                                        <h3>通知内容：[[${advise.getContent()}]]</h3>
+                                        <div><a th:title="${advise.getAttachment()}" th:if="${advise.getAttachment()!=null}" th:href="@{'/downloadadvises?filename='+${advise.getAttachment()}}" ><i class="iconfont">&#xe6c0;</i>附件:[[${advise.getAttachment()}]]</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+</body>
+</html>

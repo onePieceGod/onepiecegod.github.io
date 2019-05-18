@@ -1,0 +1,182 @@
+<!doctype html>
+<html  class="x-admin-sm" xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>后台登录-X-admin2.1</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="stylesheet" href="../../static/css/font.css" th:href="@{/css/font.css}">
+    <link rel="stylesheet" href="../../static/lib/layui/css/layui.css" th:href="@{/lib/layui/css/layui.css}">
+    <link rel="stylesheet" href="../../static/css/xadmin.css" th:href="@{/css/xadmin.css}">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../../static/lib/layui/layui.js" th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
+    <script type="text/javascript" src="../../static/js/xadmin.js" th:src="@{/js/xadmin.js}"></script>
+    <script type="text/javascript" src="../../static/js/cookie.js" th:src="@{/js/cookie.js}"></script>
+
+</head>
+
+<body>
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a th:href="@{/students}">学生</a>
+        <a>
+          <cite>导航元素</cite></a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so">
+            <input type="text" name="keyWord"  placeholder="请输入学号或姓名" required="required" autocomplete="off" class="layui-input">
+            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+        </form>
+    </div>
+    <xblock>
+        <a class="layui-btn" th:href="@{/student}"><i class="layui-icon"></i>添加</a>
+        <!--<button class="layui-btn" onclick="x_admin_show('添加用户','./member-add.html',600,400)"><i class="layui-icon"></i>添加</button>-->
+        <span class="x-right" style="line-height:40px">共有数据：[[${resp.getCount()}]] 条</span>
+    </xblock>
+    <table class="layui-table x-admin">
+        <thead>
+        <tr>
+            <th>学号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>所在专业</th>
+            <th>所在学院</th>
+            <th>电话</th>
+            <th>邮箱</th>
+            <th>年级</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student : ${resp.getData()}">
+            <td>[[${student.getId()}]]</td>
+            <td>[[${student.getName()}]]</td>
+            <td th:text="${student.getSex()}==1 ? '男':'女'"></td>
+            <td>[[${student.getInstitute().getName()}]]</td>
+            <td>[[${student.getMajor().getName()}]]</td>
+            <td>[[${student.getTelephone()}]]</td>
+            <td>[[${student.getMail()}]]</td>
+            <td>[[${student.getGrade()}]]</td>
+            <td class="td-manage">
+                <!--<a title="编辑"  onclick="x_admin_show('编辑','member-edit.html',600,400)" href="javascript:;">-->
+                    <!--<i class="layui-icon">&#xe642;</i>-->
+                <!--</a>-->
+                <a title="编辑" th:href="@{'/student/'+${student.getId()}}"><i class="layui-icon">&#xe642;</i></a>
+                <!--<a onclick="x_admin_show('修改密码','member-password.html',600,400)" title="修改密码" href="javascript:;">-->
+                    <!--<i class="layui-icon">&#xe631;</i>-->
+                <!--</a>-->
+                <a title="删除" th:href="@{'/delstudent/'+${student.getId()}}"><i class="iconfont">&#xe69d;</i></a>
+                <!--<form  th:action="@{'/student/'+${student.getId()}}" method="post" id="delete_form">-->
+                    <!--<input type="hidden" name="_method" value="delete"/>-->
+                    <!--<button title="删除"  type="button" lay-submit="" lay-filter="add"><i class="iconfont">&#xe69d;</i></button>-->
+                <!--</form>-->
+                <!--<a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">-->
+                    <!--<i class="layui-icon">&#xe640;</i>-->
+                <!--</a>-->
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="page">
+        <div th:if="${resp.getTotalPages()}==1">
+            <span class="current">1</span>
+        </div>
+        <div th:if="${resp.getTotalPages()}==2">
+            <a class="prev" th:href="@{'/students?page=0'}">&lt;&lt;</a>
+            <span class="current">[[${resp.getCur()}]]</span>
+            <a class="next" th:href="@{'/students?page='+${resp.getTotalPages()-1}}">&gt;&gt;</a>
+        </div>
+        <div th:if="${resp.getTotalPages()}>2">
+            <a class="prev" th:href="@{'/students?page=0'}">&lt;&lt;</a>
+            <a th:if="${resp.getCur()}>=2" class="num" th:href="@{'/students?page='+${resp.getCur()-2}}">&lt;</a>
+            <span class="current">[[${resp.getCur()}]]</span>
+            <a th:if="${resp.getCur()}<=${resp.getTotalPages()-1}" class="num" th:href="@{'/students?page='+${resp.getCur()}}">&gt;</a>
+            <a class="next" th:href="@{'/students?page='+${resp.getTotalPages()-1}}">&gt;&gt;</a>
+        </div>
+    </div>
+
+</div>
+<script>
+
+
+    /*用户-删除*/
+    function member_del(obj,id){
+        layer.confirm('确认要删除吗？',function(index){
+            //发异步删除数据
+            $(obj).parents("tr").remove();
+            layer.msg('已删除!',{icon:1,time:1000});
+        });
+    }
+
+    form.on('submit(add)', function(){
+        layer.confirm('是否提交？',function(){
+            //发异步删除数据
+            $("#delete_form").submit();
+            // layer.msg('提交成功!',{icon:1,time:3000});
+            //x_admin_father_reload();
+            //发异步，把数据提交给php
+            // 可以对父窗口进行刷新
+            // var index = parent.layer.getFrameIndex(window.name);
+            // //关闭当前frame
+            // parent.layer.close(index);
+
+        });
+        return false;
+    });
+
+    // form.on('submit(del)', function(){
+    //     layer.confirm('确认要删除吗？',function(){
+    //         //发异步删除数据
+    //         $("#delete_form").submit();
+    //
+    //
+    //         //发异步，把数据提交给php
+    //         // 可以对父窗口进行刷新
+    //
+    //         layer.msg('删除成功!',{icon:1,time:1000});
+    //         x_admin_father_reload();
+    //
+    //     });
+    //
+    //     return false;
+    // });
+
+
+
+    function delAll (argument) {
+
+        var data = tableCheck.getData();
+
+        layer.confirm('确认要删除吗？'+data,function(index){
+            //捉到所有被选中的，发异步进行删除
+            layer.msg('删除成功', {icon: 1});
+            $(".layui-form-checked").not('.header').parents('tr').remove();
+        });
+    }
+</script>
+
+<!--<script>var _hmt = _hmt || []; (function() {-->
+<!--var hm = document.createElement("script");-->
+<!--hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";-->
+<!--var s = document.getElementsByTagName("script")[0];-->
+<!--s.parentNode.insertBefore(hm, s);-->
+<!--})();</script>-->
+<script >
+    $(document).ready(function(){
+        var key=$("#keys").val()
+        $("#btn").click(function(){
+            alert(key)
+            window.location.href=("/teacher?keyWord="+key)
+        });
+    });
+</script>
+</body>
+
+</html>
